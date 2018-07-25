@@ -1,0 +1,25 @@
+---
+layout: default
+title: Oracle 12c release2 Win10 install stuck at 92%
+---
+
+<h2>{{page.title}}</h2>
+
+<p>Oracle 12c release 2 在win10 安装卡在数据库配置步骤;</p>
+<p>1.打开Administration Assistant for Windows: 依次打开Oracle Managed Objects -> Computers -> {Your host} -> 右键单击OS Database Administrators-Computer并选择Add/Remove</p>
+<p>将系统管理员添加至该组。</p>
+<br>
+<p>2.打开CMD 或 PowerShell </p>
+<p>键入sqlplus /nolog</p>
+<p>以dba角色登陆
+	conn /as sysdba</p>
+<p>修改system角色用户密码为oracle 
+	alter user system identified by oracle;</p>
+<p>如果之前账户多次登陆错误导致账户被锁可以使用该命令解锁 
+   ALTER USER system IDENTIFIED BY password ACCOUNT UNLOCK;</p>
+<br>
+<p>3.打开Database Configuration Assistant 另外配置新建Instance</p>
+参考：<a href="https://nehakohlidba.wordpress.com/2016/01/26/oracle-12-installation-stuck-at-88-at-oracle-database-configuration-assistant/">https://nehakohlidba.wordpress.com/2016/01/26/oracle-12-installation-stuck-at-88-at-oracle-database-configuration-assistant/</a>
+
+<p>Uninstall Oracle12c</p>
+<p>Oracle 的卸载没有uninstall 字眼的执行文件，主要是用{ORACLE_HOME}/deinstall/deinstall.bat 来实现卸载操作，以超级管理员权限执行该脚本文件就会完成instance删除及部分安装文件删除及注册表清理工作，部分残余文件可以在重启电脑后手动删除。</p>
